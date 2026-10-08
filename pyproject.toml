@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "companytoai"
+version = "0.1.0"
+description = "Handover-folder toolkit that gives a closed LLM accurate company context and keeps it fresh."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+dependencies = []
+
+[project.scripts]
+companytoai = "companytoai.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+companytoai = ["templates/*.md"]
