@@ -1,5 +1,7 @@
 # CompanyToAI
 
+> 저장소 이름: CompanyContextHandoverKit · 프로젝트 이름: CompanyToAI
+
 **기업의 현재 상황과 업무 맥락을 LLM에 정확히 전달하고, 그 맥락을 유지한 채 지시하게 해 주는 인수인계 폴더 툴킷.**
 
 *A file-based toolkit that injects accurate company context into a closed LLM and keeps it fresh through a human-managed handover folder.*
