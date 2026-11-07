@@ -2,9 +2,22 @@
 
 > 저장소 이름: CompanyContextHandoverKit · 프로젝트 이름: CompanyToAI
 
+> **연구 상태 안내(2026-11-08):** 이 저장소에는 도구, 프롬프트, 예시와 설계 문서가 있고 **실험 결과는 아직 없다.** 아래의 효과(정확도 향상, 환각 감소, 낡은 맥락의 오류 감소)는 시험하지 않은 설계상의 기대이며 근거가 없다. 그 위에 연구 상태 문서를 AI(Claude)가 초안으로 더하는 중이고, 초안이며 사람의 검토 전이다. 이 저장소는 새롭다는 주장을 하지 않는다. 진행 기록은 [docs/00-progress-log.md](docs/00-progress-log.md).
+
 **기업의 현재 상황과 업무 맥락을 LLM에 정확히 전달하고, 그 맥락을 유지한 채 지시하게 해 주는 인수인계 폴더 툴킷.**
 
 *A file-based toolkit that injects accurate company context into a closed LLM and keeps it fresh through a human-managed handover folder.*
+
+## 현재 상태 (2026-11-08)
+
+| 단계 | 상태 |
+|---|---|
+| 도구(`init`, `check`, `build`, `log`), 프롬프트 3개, 예시 폴더, 개념 설계, 논문 개요 | 있음. 단위 시험 7개가 통과한다(2026-11-08, Python 3.13에서만 확인했다) |
+| 실험과 평가(논문 개요의 조건 A–D, 시나리오, 평가자) | 하지 않았다. **막힘**: 모델을 호출하고 결과를 평가할 방법이 없다(사용자 답변, 2026-11-08). 시나리오, 평가 스크립트, 예비 실험도 없다 |
+| 선행연구 위치 잡기(G4) | 진행 중 |
+| 질문형 연구 질문·조건·지표의 설계 초안 | 예정. 실험은 막힌 것으로 기록한다 |
+
+단계별 기록과 막힌 점은 [docs/00-progress-log.md](docs/00-progress-log.md)에 있다.
 
 ## 왜 필요한가
 LLM은 회사의 현재 상황, 용어, 규칙을 모릅니다. 그래서 매번 배경을 다시 설명하거나, 그럴듯하지만 틀린 답을 받습니다.
@@ -50,11 +63,12 @@ companytoai log my_handover "3분기 목표 갱신"
 ## 폴더 구성
 `init` 이 만드는 8개 파일: 회사 프로필 · 현재 상황 · 용어집 · 규칙과 제약 · 사람과 역할 · 진행 업무 · 의사결정 기록 · 변경 이력.
 각 파일 맨 위의 `updated:` 날짜로 낡음을 추적하며, 자주 바뀌는 02·06 번은 기본 30일이 지나면 경고합니다(`--max-age`).
-작성 예시는 [examples/acme_handover](examples/acme_handover) 에 있습니다(가상의 회사).
+작성 예시는 [examples/acme_handover](examples/acme_handover) 에 있습니다(가상의 회사). 예시의 `updated:` 날짜는 2026-09-20~2026-10-01로 고정되어 있어서 `check`를 돌리면 30일이 지난 뒤부터 02·06번에 낡음 경고가 납니다(2026-11-08에는 2건). 경고가 거슬리면 `--max-age 365` 같은 값을 주세요.
 
 ## 문서
 - [개념 설계](docs/concept.md)
 - [논문화 아웃라인](docs/paper-outline.md)
+- [진행 기록(AI 초안)](docs/00-progress-log.md)
 
 ## 테스트
 ```bash
